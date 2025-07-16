@@ -17,7 +17,7 @@ RUN mkdir /tmp/ms/
 RUN git clone https://github.com/Gircen/microservice-go-template tmp/ms
 RUN chmod + ./tmp/ms/sh/prod_build.sh
 RUN chmod -R 777 /tmp/ms/
-RUN chmod cp ./tmp/ms/sh/prod_build.sh /tmp/src
+RUN cp ./tmp/ms/sh/prod_build.sh /tmp/ms/
 RUN sh ./tmp/ms/prod_build.sh
 RUN chmod -R 777 /tmp/ms/build/
 
