@@ -1,2 +1,2 @@
 #!/bin/bash
-go build -o ../build/microservice-go-template ../src/main #gosetup
+go build -o build/ src/main #gosetup
