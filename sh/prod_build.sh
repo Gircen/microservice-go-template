@@ -1,2 +1,2 @@
 #!/bin/bash
-go build -o ./build/ ./src/main #gosetup
+go build -o ${MSROOT}/build/ ${MCROOT}/src/main #gosetup
