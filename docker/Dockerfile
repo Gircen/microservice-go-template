@@ -9,6 +9,10 @@ ENV PATH /go/bin:$PATH
 
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 
-CMD ["git","clone","https://github.com/Gircen/microservice-go-template","etc/ms"]
+RUN mkdir /etc/ms/
+RUN chmod -R 777 /etc/ms/
 
-RUN etc/ms/microservice-go-template/run.sh
+CMD ["git","clone","https://github.com/Gircen/microservice-go-template","/etc/ms"]
+RUN chmod -R 777 /etc/ms/
+CMD ["chmod", "+", "/etc/ms/microservice-go-template/run.sh"]
+RUN /etc/ms/microservice-go-template/run.sh
