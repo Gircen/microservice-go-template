@@ -12,7 +12,11 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 RUN mkdir /opt/ms/
 RUN chmod -R 777 /opt/ms/
 
-CMD ["git","clone","https://github.com/Gircen/microservice-go-template","/opt/ms"]
+RUN git clone https://github.com/Gircen/microservice-go-template tmp/ms
+RUN ./tmp/ms/sh/prod_build.sh
+
+
+RUN mv tmp/ms/build/* opt/ms
 
 CMD ["chmod", "+", "/opt/ms/microservice-go-template/run.sh"]
 RUN /opt/ms/microservice-go-template/sh/build.sh
