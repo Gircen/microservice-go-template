@@ -6,23 +6,24 @@ RUN apk add --no-cache git make musl-dev go
 ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
-ENV MSROOT /tmp/mc
+ENV MSROOTTMP /tmp/microservice-go-template
 
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 
-RUN mkdir /opt/ms/
+RUN mkdir ${MSROOTTMP}
+
+
+RUN git clone https://github.com/Gircen/microservice-go-template ${MSROOTTMP}
+RUN chmod + ${MSROOTTMP}/sh/prod_build.sh
+RUN chmod -R 777 ${MSROOTTMP}
+
+RUN cp ${MSROOTTMP}/sh/prod_build.sh ${MSROOTTMP}
+RUN sh ${MSROOTTMP}/prod_build.sh
+RUN chmod -R 777 ${MSROOTTMP}/build/
+
+RUN mkdir /opt/microservice-go-template/
 RUN chmod -R 777 /opt/ms/
-RUN mkdir /tmp/ms/
-
-
-RUN git clone https://github.com/Gircen/microservice-go-template tmp/ms
-RUN chmod + ./tmp/ms/sh/prod_build.sh
-RUN chmod -R 777 /tmp/ms/
-RUN cp ./tmp/ms/sh/prod_build.sh /tmp/ms/
-RUN sh ./tmp/ms/prod_build.sh
-RUN chmod -R 777 /tmp/ms/build/
-
 RUN mv tmp/ms/build/* opt/ms
+RUN rm -rf tmp/ms/*
 
-CMD ["chmod", "+", "/opt/ms/microservice-go-template/run.sh"]
-RUN /opt/ms/microservice-go-template/sh/build.sh
+RUN /opt/ms/microservice-go-template
