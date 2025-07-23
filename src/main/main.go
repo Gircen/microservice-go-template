@@ -1,7 +1,7 @@
 package main
 
 import (
-	"microservice-go-template/src/main/config"
+	"github.com/Gircen/go-library-core/main/config"
 	"microservice-go-template/src/main/service"
 )
 
